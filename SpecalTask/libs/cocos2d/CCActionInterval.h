@@ -230,6 +230,23 @@ Example:
 }
 @end
 
+/** Moves a CCNode object simulating a parabolic jump movement by modifying its position attribute.
+ */
+@interface CCJumpY : CCActionInterval <NSCopying>
+{
+	CGPoint startPosition_;
+	CGPoint delta_;
+	ccTime height_;
+	NSUInteger jumps_;
+    float * ground_plane;
+    CCNode *parent;
+}
+/** creates the action */
++(id) actionWithDuration: (ccTime)duration position:(CGPoint)position height:(ccTime)height jumps:(NSUInteger)jumps ground_plane:(float*)k;
+/** initializes the action */
+-(id) initWithDuration: (ccTime)duration position:(CGPoint)position height:(ccTime)height jumps:(NSUInteger)jumps ground_plane:(float*)k;
+@end
+
 /** bezier configuration structure
  */
 typedef struct _ccBezierConfig {

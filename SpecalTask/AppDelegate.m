@@ -29,7 +29,6 @@
 									sharegroup:nil
 								 multiSampling:NO
 							   numberOfSamples:0];
-
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 
 	director_.wantsFullScreenLayout = YES;
@@ -42,6 +41,7 @@
 
 	// attach the openglView to the director
 	[director_ setView:glView];
+    [glView setMultipleTouchEnabled:YES];
 
 	// for rotation and other messages
 	[director_ setDelegate:self];
@@ -73,13 +73,12 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]]; 
+	[director_ pushScene: [IntroLayer scene]];
 
 	
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
-	
 	// set the Navigation Controller as the root view controller
 //	[window_ addSubview:navController_.view];	// Generates flicker.
 	[window_ setRootViewController:navController_];

@@ -812,6 +812,70 @@
 }
 @end
 
+//
+// JumpY
+//
+#pragma mark - CCJumpY
+
+@implementation CCJumpY
++(id) actionWithDuration: (ccTime) t position: (CGPoint) pos height: (ccTime) h jumps:(NSUInteger)j  ground_plane:(float*)k
+{
+	return [[[self alloc] initWithDuration: t position: pos height: h jumps:j ground_plane:k] autorelease];
+}
+
+-(id) initWithDuration: (ccTime) t position: (CGPoint) pos height: (ccTime) h jumps:(NSUInteger)j  ground_plane:(float*)k
+{
+	if( (self=[super initWithDuration:t]) ) {
+		delta_ = pos;
+		height_ = h;
+		jumps_ = j;
+        ground_plane = k;
+	}
+	return self;
+}
+
+-(id) copyWithZone: (NSZone*) zone
+{
+	CCAction *copy = [[[self class] allocWithZone: zone] initWithDuration:[self duration] position:delta_ height:height_ jumps:jumps_];
+	return copy;
+}
+
+-(void) startWithTarget:(id)aTarget
+{
+	[super startWithTarget:aTarget];
+	startPosition_ = [(CCNode*)target_ position];
+    parent = [(CCNode*)target_ parent];
+}
+
+-(void) update: (ccTime) t
+{
+	// Sin jump. Less realistic
+    //	ccTime y = height * fabsf( sinf(t * (CGFloat)M_PI * jumps ) );
+    //	y += delta.y * t;
+    //	ccTime x = delta.x * t;
+    //	[target setPosition: ccp( startPosition.x + x, startPosition.y + y )];
+    
+	// parabolic jump (since v0.8.2)
+	ccTime frac = fmodf( t * jumps_, 1.0f );
+	ccTime y = height_ * 4 * frac * (1 - frac);
+    float px = ((CCNode*)target_).position.x;
+    float py = startPosition_.y + y;
+    if (t>0.5) {//下落
+        float dipingmian = *(ground_plane + (int)px);//地平面高度
+        if (py < dipingmian)
+        py = dipingmian;
+    }
+	[target_ setPosition: ccp( px, py)];
+    
+}
+
+-(CCActionInterval*) reverse
+{
+	return [[self class] actionWithDuration:duration_ position: ccp(-delta_.x,-delta_.y) height:height_ jumps:jumps_];
+}
+@end
+
+
 
 #pragma mark - CCBezierBy
 
