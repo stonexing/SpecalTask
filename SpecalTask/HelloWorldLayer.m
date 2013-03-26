@@ -99,7 +99,7 @@
 		}
                                     ];
 		// Leaderboard Menu Item using blocks
-		CCMenuItem *itemPlay = [CCMenuItemImage itemWithNormalImage:@"Image 822 at frame 10.jpg" selectedImage:@"Image 823 alpha channel at frame 10.png" block:^(id sender) {
+		CCMenuItem *itemPlay = [CCMenuItemImage itemWithNormalImage:@"Image 822 at frame 10.png" selectedImage:@"Image 823 alpha channel at frame 10.png" block:^(id sender) {
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[Game scene] withColor:ccBLACK]];
         } ];
 		
@@ -119,10 +119,10 @@
     telScope.opacity = 0;
     [background addChild:telScope];
     
-    te = [CCSprite spriteWithFile:@"Image 817 at frame 10.jpg"];
-    zhong = [CCSprite spriteWithFile:@"Image 818 at frame 10.jpg"];
-    ren = [CCSprite spriteWithFile:@"Image 819 at frame 10.jpg"];
-    wu = [CCSprite spriteWithFile:@"Image 820 at frame 10.jpg"];
+    te = [CCSprite spriteWithFile:@"Image 817 at frame 10.png"];
+    zhong = [CCSprite spriteWithFile:@"Image 818 at frame 10.png"];
+    ren = [CCSprite spriteWithFile:@"Image 819 at frame 10.png"];
+    wu = [CCSprite spriteWithFile:@"Image 820 at frame 10.png"];
     [te setPosition:CGPointMake(156/2, 264/2)];
     [zhong setPosition:CGPointMake(156/2+40, 264/2)];
     [ren setPosition:CGPointMake(156/2+80, 264/2)];
@@ -136,10 +136,10 @@
     [background addChild:ren];
     [background addChild:wu];
     
-    hole1 = [CCSprite spriteWithFile:@"Image 824 at frame 10.jpg"];
-    hole2 = [CCSprite spriteWithFile:@"Image 824 at frame 10.jpg"];
-    hole3 = [CCSprite spriteWithFile:@"Image 824 at frame 10.jpg"];
-    hole4 = [CCSprite spriteWithFile:@"Image 824 at frame 10.jpg"];
+    hole1 = [CCSprite spriteWithFile:@"Image 824 at frame 10.png"];
+    hole2 = [CCSprite spriteWithFile:@"Image 824 at frame 10.png"];
+    hole3 = [CCSprite spriteWithFile:@"Image 824 at frame 10.png"];
+    hole4 = [CCSprite spriteWithFile:@"Image 824 at frame 10.png"];
     [hole1 setOpacity:0];
     [hole2 setOpacity:0];
     [hole3 setOpacity:0];
